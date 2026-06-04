@@ -257,16 +257,4 @@ With `append` mode and a watermark in place, Spark will only emit a window's agg
 
 ---
 
-## 9. What's Next — Project 2 Preview
-
-Project 2 will introduce increased complexity on top of this foundation:
-
-- **Kafka (Confluent Cloud) as the source** — real unbounded stream, no manual file drops
-- **Sliding windows** — overlapping time windows for rolling averages
-- **Stream-stream joins** — enriching transactions with a live promotions stream
-- **`foreachBatch` with Delta MERGE** — custom upsert logic for full idempotency control
-- **Schema evolution** — handling upstream changes to the event payload
-
----
-
 *Built for learning purposes on Databricks Free Edition. Not intended for production use.*
