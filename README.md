@@ -48,7 +48,7 @@ The specific aggregation chosen — **revenue and order count per product catego
 ## 3. Architecture
 
 ![Spark Structured Streaming Architecture on Databricks Free Edition 
-with Auto Loader, windowed aggregation, and Delta Lake sink](architecture.png)
+with Auto Loader, windowed aggregation, and Delta Lake sink](Architecture_Diagram.png)
 
 ### Data Flow Summary
 
