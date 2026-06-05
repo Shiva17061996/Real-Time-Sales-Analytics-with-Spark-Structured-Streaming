@@ -47,38 +47,8 @@ The specific aggregation chosen — **revenue and order count per product catego
 
 ## 3. Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    DATABRICKS FREE EDITION                      │
-│                   (Serverless Compute)                          │
-│                                                                 │
-│  ┌──────────────┐     ┌────────────────────────────────────┐   │
-│  │   PRODUCER   │     │     SPARK STRUCTURED STREAMING     │   │
-│  │  (Notebook)  │     │                                    │   │
-│  │              │     │  readStream (Auto Loader)          │   │
-│  │  Generates   │────▶│       ↓                            │   │
-│  │  fake JSON   │     │  withWatermark("event_time","2m")  │   │
-│  │  transaction │     │       ↓                            │   │
-│  │  files       │     │  groupBy(window(1 min), category)  │   │
-│  └──────┬───────┘     │       ↓                            │   │
-│         │             │  agg(sum(amount), count(id))       │   │
-│         ▼             │       ↓                            │   │
-│  ┌──────────────┐     │  writeStream (update mode)         │   │
-│  │Unity Catalog │     │       ↓                            │   │
-│  │   VOLUME     │     └──────────────┬─────────────────────┘   │
-│  │              │                    │                          │
-│  │raw_transactions◀──────────────────┘                         │
-│  │  (JSON files)│                    │                          │
-│  │              │                    ▼                          │
-│  │  checkpoints │     ┌──────────────────────────────────┐     │
-│  │  (state)     │     │         DELTA TABLE              │     │
-│  └──────────────┘     │  revenue_by_category             │     │
-│                        │  (window_start, window_end,      │     │
-│                        │   category, total_revenue,       │     │
-│                        │   order_count)                   │     │
-│                        └──────────────────────────────────┘     │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Spark Structured Streaming Architecture on Databricks Free Edition 
+with Auto Loader, windowed aggregation, and Delta Lake sink](architecture.png)
 
 ### Data Flow Summary
 
