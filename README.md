@@ -3,6 +3,9 @@
 > **Platform:** Databricks Free Edition | **Language:** PySpark | **Sink:** Delta Lake
 
 ---
+ > Keywords: PySpark, Spark Structured Streaming, Databricks, Delta Lake,
+  > Real-Time Analytics, Auto Loader, Watermarking, Windowed Aggregation,
+  > Data Engineering, Streaming Pipeline
 
 ## Table of Contents
 
